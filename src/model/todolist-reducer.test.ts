@@ -12,12 +12,12 @@ test('correct todolist should be deleted', () => {
     {id: todolistIDd2, title: 'What to buy', filter: 'all'}
   ]
 
-  const action = {
-    type: 'delete_todolist',
-    payload: {
-      id: todolistIDd1
-    }
-  } as const
+  // const action = {
+  //   type: 'delete_todolist',
+  //   payload: {
+  //     id: todolistIDd1
+  //   }
+  // } as const
 
   const action = DeleteTodolistAC(todolistIDd1)
 
