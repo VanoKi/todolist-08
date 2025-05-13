@@ -7,7 +7,7 @@ export type DeleteTodolistAction = {
   }
 }
 
-type Actions = DeleteTodolistAction
+// type Actions = DeleteTodolistAction
 
 const initialState: Todolist[] = []
 
@@ -21,3 +21,7 @@ export const todolistReducer = (todolists: Todolist[] = initialState, action: an
   }
 }
 
+export const DeleteTodolistAC = (id:string): DeleteTodolistAction => (
+  {type: 'delete_todolist',
+    payload: {id: id}
+  })
