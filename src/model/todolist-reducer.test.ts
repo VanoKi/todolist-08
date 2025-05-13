@@ -1,3 +1,9 @@
+import {v1} from 'uuid'
+import {expect, test} from 'vitest'
+import type {Todolist} from "../App.tsx";
+import {DeleteTodolistAC, todolistReducer} from "./todolist-reducer.ts";
+
+
 test('correct todolist should be created', () => {
   const todolistId1 = v1()
   const todolistId2 = v1()

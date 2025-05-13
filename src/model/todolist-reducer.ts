@@ -10,11 +10,14 @@ const initialState: Todolist[] = []
 
 export const todolistReducer = (todolists: Todolist[] = initialState, action: any): Todolist[] => {
   switch (action.type) {
-    case 'delete_todolist' :
-      return todolists.filter(todolist => todolist.id !== action.payload.id)
-    case 'create_todolist' :
+    case 'delete_todolist' : {
+      const {id} = action.payload
+      return todolists.filter(todolist => todolist.id !== id)
+    }
+    case 'create_todolist' : {
       const {id, title} = action.payload
-      return [...todolists, {id: id, title: title, filter: 'all'}]
+      return [...todolists, {id, title, filter: 'all'}]
+    }
     default:
       return todolists
   }
