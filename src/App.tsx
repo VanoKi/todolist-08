@@ -90,10 +90,10 @@ export const App = () => {
 
   const createTodolist = (title: string) => {
     const todolistId = v1()
-    const newTodolist: Todolist = {id: todolistId, title, filter: 'all'}
+    // const newTodolist: Todolist = {id: todolistId, title, filter: 'all'}
     // setTodolists([newTodolist, ...todolists])
     setTasks({...tasks, [todolistId]: []})
-    const action = createTodolistAC(title)
+    const action = createTodolistAC(todolistId, title)
     dispatchTodoLists(action)
   }
 
@@ -103,6 +103,7 @@ export const App = () => {
     // setTasks({...tasks})
     const action = DeleteTodolistAC(todolistId)
     dispatchTodoLists(action)
+    delete tasks[action.payload.id]
   }
 
   const changeTodolistTitle = (todolistId: string, title: string) => {

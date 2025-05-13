@@ -1,5 +1,4 @@
 import type {FilterValues, Todolist} from "../App.tsx";
-import {v1} from "uuid";
 
 export type DeleteTodolistAction = ReturnType<typeof DeleteTodolistAC>
 export type createTodolistAction = ReturnType<typeof createTodolistAC>
@@ -37,13 +36,14 @@ export const DeleteTodolistAC = (id:string) => (
     payload: {id}
   } as const)
 
-export const createTodolistAC = (title: string) => ({
-  type: "create_todolist",
-  payload: {
-    title,
-    id: v1()
-  }
-} as const)
+export const createTodolistAC = (id: string, title: string) => {
+  return {
+    type: "create_todolist",
+    payload: {
+      id, title
+    }
+  } as const
+}
 
 export const changeTodoListTitleAC = (payload: {id:string, title:string}) => ({
   type: 'change_todolists_title',
