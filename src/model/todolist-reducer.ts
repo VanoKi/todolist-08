@@ -5,7 +5,7 @@ type Actions = {
   payload: any
 }
 
-const initialState: Todolist[]
+const initialState: Todolist[] = []
 
 export const todolistReducer = (state: Todolist[] = initialState, action: any): any => {
   switch (action.type) {

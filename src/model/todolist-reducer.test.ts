@@ -1,7 +1,7 @@
 import {v1} from 'uuid'
 import {expect, test} from 'vitest'
 import type {Todolist} from "../App.tsx";
-import type {todolistReducer} from "./todolist-reducer.ts";
+import {todolistReducer} from "./todolist-reducer.ts";
 
 test('correct todolist should be deleted', () => {
   const todolistIDd1 = v1()
