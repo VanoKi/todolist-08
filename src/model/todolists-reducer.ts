@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {Todolist} from "../App.tsx";
+import {FilterValues, Todolist} from "../App.tsx";
 
 const todolistId1 = v1()
 const todolistId2 = v1()
@@ -9,27 +9,51 @@ const todolists: Todolist[] = ([
   {id: todolistId2, title: 'What to buy', filter: 'all'},
 ])
 
-type ActionsType = {
-  type: string
-  payload: any
+export type DeleteTodolistAction = {
+  type: 'REMOVE-TODOLIST'
+  payload: {
+    id: string
+  }
 }
+
+export type AddTodolistAction = {
+  type: 'ADD-TODOLIST'
+  payload: {
+    id: string
+  }
+}
+
+export type ChangeTodolistTitleActiontype = {
+  type: 'CHANGE-TODOLIST-TITLE'
+  payload: {
+    id: string
+    title: string
+  }
+}
+
+export type ChangeTodolistFilterActionType = {
+  type: 'CHANGE-TODOLIST-FILTER'
+  payload: {
+    id: string
+    filter: FilterValues
+  }
+}
+
+type ActionsType =
+  DeleteTodolistAction
+  | AddTodolistAction
+  | ChangeTodolistTitleActiontype
+  |ChangeTodolistFilterActionType
 
 
 export const todolistsReducer = (state = todolists, action:ActionsType):Todolist[] => {
   switch (action.type) {
     case 'REMOVE-TODOLIST' : {
-      return state
+      return state.filter(el => el.id !== action.payload.id)
     }
     case 'ADD-TODOLIST' : {
       return state
     }
     default: throw new Error(`I don't understand this type`)
-  }
-}
-
-const action = {
-  type: 'todos/todoAdded',
-  payload: {
-    id: 'abracadabra'
   }
 }
