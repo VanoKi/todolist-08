@@ -43,5 +43,5 @@ test('correct todolist should be added', () => {
 
   const endState = todolistsReducer(startState, action)
   expect(endState.length).toBe(3)
-  expect(endState[0].id).toBe(action.payload.title)
+  expect(endState[2].title).toBe(action.payload.title)
 })
