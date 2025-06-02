@@ -19,7 +19,7 @@ export type DeleteTodolistAction = {
 export type AddTodolistAction = {
   type: 'ADD-TODOLIST'
   payload: {
-    id: string
+    title: string
   }
 }
 
@@ -52,7 +52,9 @@ export const todolistsReducer = (state = todolists, action:ActionsType):Todolist
       return state.filter(el => el.id !== action.payload.id)
     }
     case 'ADD-TODOLIST' : {
-      return state
+      const todolistId = v1()
+      const newTodolist: Todolist = {id: todolistId, title: action.payload.title, filter: 'all'}
+      return [...state, newTodolist]
     }
     default: throw new Error(`I don't understand this type`)
   }
