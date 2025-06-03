@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {Todolist} from "../App.tsx";
-import {todolistsReducer} from "./todolists-reducer.ts";
+import {removeTodolistAC, todolistsReducer} from "./todolists-reducer.ts";
 import {expect} from "vitest";
 import {test} from 'vitest'
 
@@ -13,16 +13,16 @@ test('correct todolist should be removed', () => {
     {id: todolistId2, title: 'What to buy', filter: 'all'},
   ]
 
-  const action = {
-    type: 'REMOVE-TODOLIST',
-    payload: {
-      id: todolistId1
-    }
-  } as const
+  // const action = {
+  //   type: 'REMOVE-TODOLIST',
+  //   payload: {
+  //     id: todolistId1
+  //   }
+  // } as const
 
-  const endState = todolistsReducer(startState, action)
+  const endState = todolistsReducer(startState, removeTodolistAC(todolistId2))
   expect(endState.length).toBe(1)
-  expect(endState[0].id).toBe(todolistId2)
+  expect(endState[0].id).toBe(todolistId1)
 })
 
 test('correct todolist should be added', () => {

@@ -66,3 +66,13 @@ export const todolistsReducer = (state = todolists, action:ActionsType):Todolist
     default: throw new Error(`I don't understand this type`)
   }
 }
+
+export const removeTodolistAC = (id: string) => {
+  return {
+    type: 'REMOVE-TODOLIST',
+    payload: {
+      id
+    }
+  } as const
+}
+
