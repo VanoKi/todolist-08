@@ -76,3 +76,11 @@ export const removeTodolistAC = (id: string) => {
   } as const
 }
 
+export const addTodolistAC = (title: string) => {
+  return {
+    type: 'ADD-TODOLIST',
+    payload: {
+      title
+    }
+  } as const
+}

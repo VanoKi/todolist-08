@@ -1,6 +1,6 @@
 import {v1} from "uuid";
 import {Todolist} from "../App.tsx";
-import {removeTodolistAC, todolistsReducer} from "./todolists-reducer.ts";
+import {addTodolistAC, removeTodolistAC, todolistsReducer} from "./todolists-reducer.ts";
 import {expect} from "vitest";
 import {test} from 'vitest'
 
@@ -12,13 +12,6 @@ test('correct todolist should be removed', () => {
     {id: todolistId1, title: 'What to learn', filter: 'all'},
     {id: todolistId2, title: 'What to buy', filter: 'all'},
   ]
-
-  // const action = {
-  //   type: 'REMOVE-TODOLIST',
-  //   payload: {
-  //     id: todolistId1
-  //   }
-  // } as const
 
   const endState = todolistsReducer(startState, removeTodolistAC(todolistId2))
   expect(endState.length).toBe(1)
@@ -34,16 +27,17 @@ test('correct todolist should be added', () => {
     {id: todolistId2, title: 'What to buy', filter: 'all'},
   ]
 
-  const action = {
-    type: 'ADD-TODOLIST',
-    payload: {
-      title: "New Todolist"
-    }
-  } as const
+  // const action = {
+  //   type: 'ADD-TODOLIST',
+  //   payload: {
+  //     title: "New Todolist"
+  //   }
+  // } as const
 
-  const endState = todolistsReducer(startState, action)
+  // const endState = todolistsReducer(startState, action)
+  const endState = todolistsReducer(startState, addTodolistAC('New Todolist'))
   expect(endState.length).toBe(3)
-  expect(endState[2].title).toBe(action.payload.title)
+  expect(endState[2].title).toBe(addTodolistAC('New Todolist').payload.title)
 })
 
 test('correct todolist should be change its name', () => {
