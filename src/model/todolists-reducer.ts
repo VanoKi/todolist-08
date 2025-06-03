@@ -94,3 +94,13 @@ export const changeTodolistAC = (id:string, title:string) => {
     }
   } as const
 }
+
+export const changeFilterAC = (id: string, filter:FilterValues) => {
+  return {
+    type: 'CHANGE-TODOLIST-FILTER',
+    payload: {
+      id,
+      filter
+    }
+  } as const
+}

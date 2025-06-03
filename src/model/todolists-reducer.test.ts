@@ -1,6 +1,12 @@
 import {v1} from "uuid";
 import {Todolist} from "../App.tsx";
-import {addTodolistAC, changeTodolistAC, removeTodolistAC, todolistsReducer} from "./todolists-reducer.ts";
+import {
+  addTodolistAC,
+  changeFilterAC,
+  changeTodolistAC,
+  removeTodolistAC,
+  todolistsReducer
+} from "./todolists-reducer.ts";
 import {expect} from "vitest";
 import {test} from 'vitest'
 
@@ -55,15 +61,7 @@ test('correct filter of todolist should be changed', () => {
     {id: todolistId2, title: 'What to buy', filter: 'all'},
   ]
 
-  const action = {
-    type: 'CHANGE-TODOLIST-FILTER',
-    payload: {
-      id: todolistId2,
-      filter: 'completed'
-    }
-  } as const
-
-  const endState = todolistsReducer(startState, action)
-  expect(endState[0].title).toBe('all')
-  expect(endState[1].title).toBe(action.payload.filter)
+  const endState = todolistsReducer(startState, changeFilterAC(todolistId2, 'completed'))
+  expect(endState[0].filter).toBe('all')
+  expect(endState[1].filter).toBe('completed')
 })
