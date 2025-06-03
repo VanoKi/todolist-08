@@ -37,7 +37,7 @@ test('correct todolist should be added', () => {
   // const endState = todolistsReducer(startState, action)
   const endState = todolistsReducer(startState, addTodolistAC('New Todolist'))
   expect(endState.length).toBe(3)
-  expect(endState[2].title).toBe(addTodolistAC('New Todolist').payload.title)
+  expect(endState[2].title).toBe('New Todolist')
 })
 
 test('correct todolist should be change its name', () => {
